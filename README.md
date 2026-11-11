@@ -2,9 +2,7 @@
 
 A machine-learning web app that estimates the price of a domestic Indian flight from its route, airline, date, timing and number of stops. It is built on a **Tuned Random Forest** model.
 
-**Developed by Sindhu S**
-
-## Open in Streamlit
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://flight-predict-ai.streamlit.app)
 
 🔗 **Live demo:** https://flight-predict-ai.streamlit.app
 
@@ -19,6 +17,9 @@ A machine-learning web app that estimates the price of a domestic Indian flight 
 |---|---|
 | ![Smart Analytics](screenshots/smart_analytics.png) | ![Plan Better](screenshots/plan_better.png) |
 
+**PDF report**
+
+[Download a sample PDF report](samples_report/flight_fare_prediction_report.pdf)
 
 ---
 

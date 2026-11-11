@@ -35,7 +35,7 @@ import flight_utils as fu
 # --------------------------------------------------------------------------- #
 APP_TITLE = "Flight Fare Prediction"
 DEVELOPER = "Sindhu S"
-GITHUB_URL = "https://github.com/"  # <- paste your own GitHub repo link here (set "" to hide the icon)
+GITHUB_URL = "https://github.com/sindhus56/flight-fare-prediction"  # GitHub icon in the nav bar (set "" to hide it)
 
 PAGES = ["Home", "Quick Prediction", "Smart Analytics", "Plan Better", "About"]
 

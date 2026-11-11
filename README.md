@@ -6,24 +6,6 @@ A machine-learning web app that estimates the price of a domestic Indian flight 
 
 ---
 
-## Table of contents
-1. [Screenshots](#screenshots)
-2. [Features](#features)
-3. [Pages](#pages)
-4. [Dataset](#dataset)
-5. [Machine-learning pipeline](#machine-learning-pipeline)
-6. [Model performance](#model-performance)
-7. [How a prediction is made](#how-a-prediction-is-made)
-8. [Sample report](#sample-report)
-9. [Tech stack](#tech-stack)
-10. [Folder structure](#folder-structure)
-11. [Getting started](#getting-started)
-12. [Troubleshooting](#troubleshooting)
-13. [Limitations](#limitations)
-14. [Future improvements](#future-improvements)
-
----
-
 ## Screenshots
 | Home | Quick Prediction |
 |---|---|
@@ -67,27 +49,6 @@ A machine-learning web app that estimates the price of a domestic Indian flight 
 - **Period covered:** journeys between **March and June 2019**.
 - **Routes:** 6 source → destination pairs.
 - **Main columns:** Airline, Date of Journey, Source, Destination, Route, Departure Time, Arrival Time, Duration, Total Stops, Additional Info and **Price** (the target).
-
----
-
-## Machine-learning pipeline
-The app (`flight_utils.py`) repeats the notebook's steps in the same order:
-
-1. **Cleaning** – drop missing values, drop duplicate rows, and merge `No Info` into `No info`.
-2. **Feature extraction**
-   - `Duration` (e.g. `2h 50m`) → `Duration_Minutes`
-   - `Date_of_Journey` → `Journey_Day`, `Journey_Month`
-   - `Dep_Time` / `Arrival_Time` → `Dep_Hour`, `Dep_Minute`, `Arrival_Hour`, `Arrival_Minute`
-3. **Encoding**
-   - `Total_Stops` mapped to numbers: non-stop = 0 … 4 stops = 4
-   - One-hot encoding (`drop_first=True`) for `Airline`, `Source`, `Destination` and `Additional_Info`
-4. **Dropped columns** – `Date_of_Journey`, `Dep_Time`, `Arrival_Time`, `Duration`, `Route`.
-5. **Result** – **36 input features** and the target `Price`.
-6. **Train/test split** – 80 % / 20 % with `random_state=42`.
-7. **Models compared** – Linear Regression, Decision Tree, Random Forest and a GridSearchCV-tuned Random Forest.
-8. **Final model** – Tuned Random Forest with `n_estimators=100`, `max_depth=20`, `min_samples_split=2`, `min_samples_leaf=1`, `random_state=42`.
-
-The trained model is saved as `flight_price_model.pkl` and the feature order as `feature_columns.pkl`, so the app builds the input in exactly the order the model expects.
 
 ---
 
@@ -154,52 +115,6 @@ flight_app/
 ├── flight_price_model.pkl    # optional: model saved by the notebook
 └── feature_columns.pkl       # optional: feature order saved by the notebook
 ```
-
----
-
-## Getting started
-
-### 1. Clone the repository
-```
-git clone https://github.com/sindhus56/flight-fare-prediction.git
-cd flight-fare-prediction
-```
-
-### 2. (Recommended) create a virtual environment
-```
-python -m venv .venv
-# Windows
-.venv\Scripts\activate
-# macOS / Linux
-source .venv/bin/activate
-```
-
-### 3. Install the requirements
-```
-pip install -r requirements.txt
-```
-
-### 4. Check the data files
-- `Flight_Fare.xlsx` must be in the project folder (the app shows an upload box if it is missing).
-- `flight_price_model.pkl` and `feature_columns.pkl` are optional. If they are present the app loads them; if not, it trains the same Tuned Random Forest once at start-up (about 5–10 seconds).
-
-### 5. Run the app
-```
-streamlit run app.py
-```
-Then open the address shown in the terminal (usually http://localhost:8501).
-
----
-
-## Troubleshooting
-| Problem | Fix |
-|---|---|
-| `streamlit` is not recognised | Run `python -m streamlit run app.py`, or activate your virtual environment first. |
-| Model file fails to load / version warning | The `.pkl` was saved with a different scikit-learn version. Delete it and the app will retrain automatically. |
-| "Dataset not found" box appears | Put `Flight_Fare.xlsx` next to `app.py`, or upload it in the box. |
-| *Download Report* is greyed out | Make a prediction first; the report is built from the latest prediction. |
-| The PDF is not created | Install the PDF library with `pip install reportlab`. |
-| Page looks unstyled | Use a recent Streamlit (`pip install -U streamlit`) and refresh the browser. |
 
 ---
 

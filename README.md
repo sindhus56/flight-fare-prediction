@@ -4,6 +4,10 @@ A machine-learning web app that estimates the price of a domestic Indian flight 
 
 **Developed by Sindhu S**
 
+## Open in Streamlit
+
+🔗 **Live demo:** https://flight-predict-ai.streamlit.app
+
 ---
 
 ## Screenshots

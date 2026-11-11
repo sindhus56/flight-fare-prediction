@@ -19,7 +19,7 @@ A machine-learning web app that estimates the price of a domestic Indian flight 
 
 **PDF report**
 
-[Download a sample PDF report](samples_report/flight_fare_prediction_report.pdf)
+[Download a sample PDF report](sample_report/flight_fare_prediction_report.pdf)
 
 ---
 
